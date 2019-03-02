@@ -1,5 +1,49 @@
 //wait till it loads
 window.addEventListener("load", function(event) {
+  getJson('js/data.json', getJsonCallback);
+});
+
+//FUNCTIONS
+
+//function to get data from json
+function getJson( url, callback ) {
+  var request = new XMLHttpRequest();
+  //request is async - hence the callback
+  request.open( 'GET', url, true );
+  request.responseType = 'json';
+  request.onreadystatechange = function() {
+    if ( this.readyState == 4 && this.status == 200 ) {
+      callback ( this.response.blocks );
+    }
+  };
+  request.send();
+}
+
+//callback function for get data from json
+function getJsonCallback( data ) {
+  for ( var i = 0; i < data.length; i++ ) {
+    //organize the data
+    var heading = data[i].heading;
+    //content needs further attention
+    var content = '';
+    if ( typeof data[i].content !== 'undefined' ) {
+      //use content from json
+      content += data[i].content;
+    } else if ( typeof data[i].items !== 'undefined' ) {
+      content += data[i].items.join('<br />');
+    }
+
+    //we'll be injecting into this div
+    var container = document.getElementById('accordion-container');
+    //populate the container div
+    container.insertAdjacentHTML('beforeend', '<div class="accordion-example__accordion-title">' + heading + '</div>' + '<div class="accordion-example__accordion-panel"><p>' + content + '</p></div>');
+  }
+  //call interactivate accordions
+  interactivateAccordions();
+}
+
+//make accordion interactive
+function interactivateAccordions() {
   //get all accordions
   var accordions = document.getElementsByClassName( 'accordion-example__accordion-title' );
   //loop thorugh accordions
@@ -7,8 +51,7 @@ window.addEventListener("load", function(event) {
       accordions[i].addEventListener('click', function() {
         //toggle class on click
         this.classList.toggle( 'accordion-example__accordion-title--active' );
-        this.nextElementSibling.classList.toggle( 'accordion-example__accordion-panel--active' ); 
+        this.nextElementSibling.classList.toggle( 'accordion-example__accordion-panel--active' );
       });
   }
-
-});
+}
