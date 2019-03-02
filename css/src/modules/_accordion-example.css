@@ -29,20 +29,31 @@
     float: right;
   }
 
+  &__accordion-title--active:after {
+    content: '\2212';
+    float: right;
+  }
+
   &__accordion-title:hover {
     background-color: $darkBlue;
   }
 
   &__accordion-panel {
     border: 1px solid $darkBlue;
-    padding: 0.1rem 1rem;
+    padding: 0.05rem 1rem;
     background-color: $lightBlue;
     color: $mainWhite;
     font-size: 0.9rem;
     display: none;
-    
+
     @mixin atSmall {
       font-size: 1.1rem;
     }
   }
+
+  &__accordion-panel--active {
+    display: block;
+  }
+
+
 }

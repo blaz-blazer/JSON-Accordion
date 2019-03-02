@@ -48,6 +48,8 @@ body {
 .accordion-example {
   background-color: #f2f2f2;
   padding: 2rem 1rem;
+
+
 }
 .accordion-example__title {
     margin-top: 0;
@@ -74,12 +76,16 @@ body {
     content: '\002b';
     float: right;
   }
+.accordion-example__accordion-title--active:after {
+    content: '\2212';
+    float: right;
+  }
 .accordion-example__accordion-title:hover {
     background-color: #25435b;
   }
 .accordion-example__accordion-panel {
     border: 1px solid #25435b;
-    padding: 0.1rem 1rem;
+    padding: 0.05rem 1rem;
     background-color: #4378a3;
     color: #f2f2f2;
     font-size: 0.9rem;
@@ -89,4 +95,7 @@ body {
 .accordion-example__accordion-panel {
       font-size: 1.1rem
   }
+  }
+.accordion-example__accordion-panel--active {
+    display: block;
   } 
