@@ -1,4 +1,4 @@
-//set to false if your domain is trused origin on the server where json file is
+//set to false if your domain is trused origin on the server where the json file is
 var proxy = true;
 var url;
 
