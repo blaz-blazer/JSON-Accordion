@@ -1,0 +1,48 @@
+.accordion-example {
+  background-color: $mainWhite;
+  padding: 2rem 1rem;
+
+  &__title {
+    margin-top: 0;
+    color: $mainBlue;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__accordion-title {
+    background-color: $mainBlue;
+    padding: 0.8rem 1rem;
+    color: $mainWhite;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid $darkBlue;
+    cursor: pointer;
+
+    @mixin atSmall {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__accordion-title:after {
+    content: '\002b';
+    float: right;
+  }
+
+  &__accordion-title:hover {
+    background-color: $darkBlue;
+  }
+
+  &__accordion-panel {
+    border: 1px solid $darkBlue;
+    padding: 0.1rem 1rem;
+    background-color: $lightBlue;
+    color: $mainWhite;
+    font-size: 0.9rem;
+    display: none;
+    
+    @mixin atSmall {
+      font-size: 1.1rem;
+    }
+  }
+}

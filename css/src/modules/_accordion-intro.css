@@ -1,0 +1,34 @@
+.accordion-intro {
+  background-color: $mainBlue;
+  padding: 3rem 1rem;
+  text-align: center;
+
+  &__title {
+    margin-top: 0;
+    color: $mainWhite;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 2.2rem;
+
+    @mixin atSmall {
+      font-size: 3rem;
+    }
+  }
+  &__subtitle {
+    color: $mainWhite;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 1.4rem;
+
+    @mixin atSmall {
+      font-size: 1.8rem;
+    }
+  }
+  &__description {
+    color: $mainWhite;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+
+    @mixin atSmall {
+      font-size: 1.2rem;
+    }
+  }
+}
