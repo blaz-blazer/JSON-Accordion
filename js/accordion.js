@@ -1,6 +1,18 @@
+//set to false if your domain is trused origin on the server where json file is
+var proxy = true;
+var url;
+
+if ( proxy === true) {
+  //we use an api
+  url = 'https://cors-anywhere.herokuapp.com/http://dev-test.grafikrdev.dk/frontend/accordion-data.json';
+} else { //we access directly
+  url = 'http://dev-test.grafikrdev.dk/frontend/accordion-data.json';
+}
+
 //wait till it loads
 window.addEventListener("load", function(event) {
-  getJson('js/data.json', getJsonCallback);
+  //initialize accoridon
+  getJson( url, getJsonCallback );
 });
 
 //FUNCTIONS
@@ -10,6 +22,7 @@ function getJson( url, callback ) {
   var request = new XMLHttpRequest();
   //request is async - hence the callback
   request.open( 'GET', url, true );
+  request.setRequestHeader( 'Content-Type', 'application/json' );
   request.responseType = 'json';
   request.onreadystatechange = function() {
     if ( this.readyState == 4 && this.status == 200 ) {
@@ -34,9 +47,9 @@ function getJsonCallback( data ) {
     }
 
     //we'll be injecting into this div
-    var container = document.getElementById('accordion-container');
+    var container = document.getElementById( 'accordion-container' );
     //populate the container div
-    container.insertAdjacentHTML('beforeend', '<div class="accordion-example__accordion-title">' + heading + '</div>' + '<div class="accordion-example__accordion-panel"><p>' + content + '</p></div>');
+    container.insertAdjacentHTML( 'beforeend', '<div class="accordion-example__accordion-title">' + heading + '</div>' + '<div class="accordion-example__accordion-panel"><p>' + content + '</p></div>' );
   }
   //call interactivate accordions
   interactivateAccordions();
