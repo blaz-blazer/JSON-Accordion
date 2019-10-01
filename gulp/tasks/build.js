@@ -6,7 +6,12 @@ var cssnano = require('gulp-cssnano');
 var uglify = require ('gulp-uglify')
 
 gulp.task('deleteDistFolder', function() {
-  return del("./dist");
+  return del("./docs");
+})
+
+gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
+  return gulp.src(['./data.json'])
+  .pipe(gulp.dest("./docs"));
 })
 
 gulp.task('usemin', ['deleteDistFolder'], function() {
@@ -15,7 +20,7 @@ gulp.task('usemin', ['deleteDistFolder'], function() {
     css: [function() {return rev()}, function() {return cssnano()}],
     js: [function() {return rev()}, function() {return uglify()}],
   }))
-  .pipe(gulp.dest("./dist"));
+  .pipe(gulp.dest("./docs"));
 })
 
-gulp.task('build', ['deleteDistFolder', 'usemin']);
+gulp.task('build', ['deleteDistFolder', 'usemin', 'copyGeneralFiles']);
