@@ -19,41 +19,59 @@
     border: 1px solid $darkBlue;
     cursor: pointer;
 
+    &:after {
+      content: '\002b';
+      float: right;
+      transition: all .3s ease-in;
+    }
+
+    &--active {
+      &:after {
+        content: '\2212';
+        transform: rotate(360deg);
+      }
+    }
+
+    &:hover {
+      background-color: $darkBlue;
+    }
+
     @mixin atSmall {
       font-size: 1.3rem;
     }
-  }
 
-  &__accordion-title:after {
-    content: '\002b';
-    float: right;
-  }
-
-  &__accordion-title--active:after {
-    content: '\2212';
-    float: right;
-  }
-
-  &__accordion-title:hover {
-    background-color: $darkBlue;
   }
 
   &__accordion-panel {
-    border: 1px solid $darkBlue;
-    padding: 0.05rem 1rem;
     background-color: $lightBlue;
     color: $mainWhite;
     font-size: 0.9rem;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transform: translateX(-100%);
+    transition: opacity .3s ease-in, transform .3s ease-in;
+
+    p {
+      margin: 0;
+    }
+
+    &--active {
+      transform: translateX(0);
+      padding: 0.05rem 1rem;
+      border: 1px solid $darkBlue;
+      visibility: visible;
+      opacity: 1;
+      height: auto;
+
+      p {
+        margin: 1rem 0;
+      }
+    }
 
     @mixin atSmall {
       font-size: 1.1rem;
     }
   }
-
-  &__accordion-panel--active {
-    display: block;
-  }
-
 
 }

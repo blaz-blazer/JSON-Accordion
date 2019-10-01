@@ -1,13 +1,6 @@
-//set to false if your domain is trused origin on the server where the json file is
-var proxy = true;
-var url;
+var getUrl = window.location;
 
-if ( proxy === true) {
-  //we use an api
-  url = 'https://cors-anywhere.herokuapp.com/http://dev-test.grafikrdev.dk/frontend/accordion-data.json';
-} else { //we access directly
-  url = 'http://dev-test.grafikrdev.dk/frontend/accordion-data.json';
-}
+var url =  getUrl + '/data.json';
 
 //wait till it loads
 window.addEventListener("load", function(event) {
@@ -49,9 +42,9 @@ function getJsonCallback( data ) {
     //we'll be injecting into this div
     var container = document.getElementById( 'accordion-container' );
     //populate the container div
-    container.insertAdjacentHTML( 'beforeend', '<div class="accordion-example__accordion-title">' + heading + '</div>' + '<div class="accordion-example__accordion-panel"><p>' + content + '</p></div>' );
+    container.insertAdjacentHTML( 'beforeend', '<div class="accordion-example__accordion-title">' + heading + '</div>' + '<div class="accordion-example__accordion-panel"><p class="accordion-example__accordion-panel__text">' + content + '</p></div>' );
   }
-  //call interactivate accordions
+  //call the interactivate accordions
   interactivateAccordions();
 }
 
